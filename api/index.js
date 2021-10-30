@@ -19,19 +19,21 @@ app.use(
 app.use(cors());
 //#endregion
 
-//para enviar
+//para enviar al fronted (inicio)
 app.get('/', (req,res) => {
     res.send("PAGINA EN CONSTRUCCION! FALTA AGREGAR EL FRONTEND")
 })
 
-//para enviar
+//para enviar al fronted http://localhost:8080
 app.get('/prueba', (req,res) => {
     res.send("Hola, Estoy funcionando")
 })
 
-// para guardar
+// recibir lo del frontend 
 app.post('/transaccion', (req,res) => {
-    res.send("Me hicieron post")
+    //res.send("Me hicieron post")
+    console.log('recibiendo data')
+    console.log(req.body)
 })
 
 app.listen(port, () => {
