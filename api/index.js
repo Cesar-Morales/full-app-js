@@ -4,6 +4,7 @@ const cors = require('cors');
 //app express
 const app = express();
 const port = 8080
+const arregloTransacciones = []
 
 //#region
 app.use(
@@ -25,15 +26,22 @@ app.get('/', (req,res) => {
 })
 
 //para enviar al fronted http://localhost:8080
-app.get('/prueba', (req,res) => {
-    res.send("Hola, Estoy funcionando")
+app.get('/transacciones', (req,res) => {
+    if(arregloTransacciones.length == 0){
+        res.send("Arreglo momentaneamente vacio")
+    }
+    else{
+        res.send(arregloTransacciones)
+    }
 })
 
 // recibir lo del frontend 
 app.post('/transaccion', (req,res) => {
     //res.send("Me hicieron post")
-    console.log('recibiendo data')
-    console.log(req.body)
+    //console.log(req.body)
+    let transaccion = req.body
+    arregloTransacciones.push(transaccion)
+    console.log(`Dato ${req.body.descripcionTransaccion} Guardada`)
 })
 
 app.listen(port, () => {
